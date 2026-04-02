@@ -55,6 +55,8 @@ public class Tower {
         this.cups = new ArrayList<Cup>();
         this.stack = new ArrayList<StackItem>();
         this.frame = new TowerFrame(width, maxHeight, DEFAULT_MARGIN);
+        
+
     }
 
     
@@ -228,6 +230,7 @@ public class Tower {
             } else {
                 stack.add(cup);
             }
+            
             repositionAllItems();
             if (visible) {
                 cup.makeVisible();
@@ -389,8 +392,8 @@ public class Tower {
      * Método auxiliar para la fearfulLid para que esta valide que su taza compañera está
      */
     private boolean isCupInTower(int cupId) {
-        for (Cup cup : cups) {
-            if (cup.getId() == cupId) {
+        for (StackItem item : stack) {
+            if (isCupType(item.getType()) && item.getCupId() == cupId) {
                 return true;
             }
         }
@@ -492,7 +495,13 @@ public class Tower {
         }
         for (int i = stack.size() - 1; i >= 0; i--) {
             if (isCupType(stack.get(i).getType())) {
-                removeCup(cups.indexOf((Cup) stack.get(i)));
+                Cup cup = (Cup) stack.get(i);
+                if (cup.getType().equals("hierarchical") && cup.hasReachedBottom()) {
+                    showMessage("hierarchicalCup reached the bottom and cannot be removed");
+                    ok = false;
+                    return;
+                }
+                removeCup(cups.indexOf(cup));
                 ok = true;
                 return;
             }
@@ -500,6 +509,8 @@ public class Tower {
         showMessage("No cups in tower");
         ok = false;
     }
+
+    
 
  
     /**
@@ -749,16 +760,13 @@ public class Tower {
     
     public void makeVisible() {
         visible = true;
-        
         frame.makeVisible();
         for (Cup cup : cups) {
             cup.makeVisible();
-            
             if (cup.hasLid()) {
                 cup.getLid().makeVisible();
             }
         }
-        
         repositionAllItems();
         ok = true;
     }
@@ -806,7 +814,6 @@ public class Tower {
         ok = true;
     }
     
-   
 }
 
     

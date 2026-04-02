@@ -140,14 +140,19 @@ public class Cup implements StackItem {
      */
     
     public void setupRectangle(int x, int y, int width) {
+        boolean wasVisible = rectangle.isVisible();
+        
         rectangle.makeInvisible();
+        
         rectangle.changeSize(blockSize * PIXELS_PER_CM, width);
         rectangle.changeColor(color);
         rectangle.moveTo(x, y);
+        
         if (visible) {
             rectangle.makeVisible();
         }
     }
+    
     public boolean hasReachedBottom() {
         return false;
     }

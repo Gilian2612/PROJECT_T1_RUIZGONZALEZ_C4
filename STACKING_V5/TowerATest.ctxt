@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=TowerATest
+comment0.text=\r\n\ Pruebas\ de\ aceptacion\ para\ el\ Ciclo\ 4.\r\n\ Cada\ prueba\ muestra\ visualmente\ el\ comportamiento\ y\ pregunta\ al\ usuario\ si\ lo\ acepta.\r\n\ William\ Santiago\ Ruiz\ ,\ Sergio\ Gonzalez\r\n
+comment1.params=
+comment1.target=void\ acceptanceTestOpenerCupRemovesAllLids()
+comment1.text=\r\n\ Prueba\ de\ aceptacion\ 1\:\ OpenerCup\ elimina\ todas\ las\ tapas\ al\ entrar.\r\n\ Paso\ 1\:\ Se\ crean\ 3\ tazas.\r\n\ Paso\ 2\:\ Se\ tapan\ las\ 3\ tazas.\r\n\ Paso\ 3\:\ Entra\ una\ OpenerCup\ que\ elimina\ todas\ las\ tapas.\r\n
+comment2.params=
+comment2.target=void\ acceptanceTestHierarchicalCupDisplacesAndStays()
+comment2.text=\r\n\ Prueba\ de\ aceptacion\ 2\:\ HierarchicalCup\ desplaza\ tazas\ menores\ y\ no\ se\ puede\ quitar.\r\n\ Paso\ 1\:\ Se\ crean\ 3\ tazas\ de\ diferentes\ tamanios.\r\n\ Paso\ 2\:\ Entra\ una\ HierarchicalCup\ que\ desplaza\ las\ menores.\r\n\ Paso\ 3\:\ Se\ intenta\ quitar\ la\ HierarchicalCup\ y\ no\ puede.\r\n
+numComments=3

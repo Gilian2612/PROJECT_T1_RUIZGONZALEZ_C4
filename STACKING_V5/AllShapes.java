@@ -1,7 +1,4 @@
- 
 
-  
-import java.awt.Canvas;
 /**
  * Clase base abstracta para todas las figuras del simulador.
  * deja draw() y erase() como responsabilidad de cada subclase
