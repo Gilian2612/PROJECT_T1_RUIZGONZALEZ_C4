@@ -1,5 +1,3 @@
-import shapes.*; 
-
 /**
  * VanishingCup es una copa que se achica cada vez que se utiliza la función de 
  * invertir la torre, se va a encoger progresivamente hasta desaparecer por cada iteración
@@ -17,12 +15,14 @@ public class VanishingCup extends Cup
  
     @Override
     public String getType() {
-        return "vanishing";
+        return "Vanishing";
     }
+    
     /**
      * Va a encoger la taza progresivamente hasta que se desaparezca, al terminar, 
      * la taza queda invisible 
      */
+    @Override
     public void vanish() {
         int originalHeight = getBlockSize() * 10;
         int originalWidth = getWidth();

@@ -1,5 +1,4 @@
-package shapes;
-
+ 
 import java.awt.*;
 import java.awt.geom.*;
  
@@ -10,7 +9,7 @@ import java.awt.geom.*;
  * @version 1.0.  (15 July 2000) 
  */
 
-public class Circle{
+public class Circle extends AllShapes{
 
     public static final double PI=3.1416;
     
@@ -55,8 +54,9 @@ public class Circle{
         erase();
         isVisible = false;
     }
-
-    private void draw(){
+    
+    @Override
+    protected void draw(){
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();
             canvas.draw(this, color, 
@@ -73,7 +73,9 @@ public class Circle{
         draw();
     }
     
-    private void erase(){
+    @Override
+    
+    protected void erase(){
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();
             canvas.erase(this);

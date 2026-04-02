@@ -1,4 +1,3 @@
-import shapes.*; 
 
 /**
  * copa tipo hierarchial 
@@ -9,16 +8,18 @@ import shapes.*;
  * @version  4
  * */
  
-public class hierarchialCup extends Cup {
+public class hierarchicalCup extends Cup {
     private boolean reachedBottom; 
-    public hierarchialCup(String color, int blockSize, int id){
+    public hierarchicalCup(String color, int blockSize, int id){
         super(color, blockSize, id); 
         this.reachedBottom = false;
     }
     @Override 
     public String getType(){ 
-        return "hierarchial"; 
+        return "hierarchical"; 
     } 
+    
+    @Override
     public boolean hasReachedBottom() {
         return reachedBottom;
     }

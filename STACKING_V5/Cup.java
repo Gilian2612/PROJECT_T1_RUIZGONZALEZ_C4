@@ -1,4 +1,3 @@
-import shapes.*; 
 
 /**
  * Representa una taza en el simulador de apilamiento
@@ -46,6 +45,7 @@ public class Cup implements StackItem {
     public String getType() {
         return "cup";
     }
+    
     /**
      * reposition 
      * Devuelve coordenada Y del piso disponible al reposicional la taza en Tower
@@ -147,10 +147,13 @@ public class Cup implements StackItem {
         if (visible) {
             rectangle.makeVisible();
         }
-        if (lid != null) {
-            lid.setupRectangle(x, y - PIXELS_PER_CM, width);
-        }
     }
+    public boolean hasReachedBottom() {
+        return false;
+    }
+    public void vanish() {
+    }
+    
     
     public int getTotalHeight() {
         return blockSize + (hasLid() ? 1 : 0);

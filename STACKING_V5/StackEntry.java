@@ -1,4 +1,3 @@
-import shapes.*; 
 
 public class StackEntry {
     private String type;   

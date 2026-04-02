@@ -164,7 +164,13 @@ public class Tower {
      * @param blockSize 
      */
     
-    public void pushCup(int blockSize) {
+    public void pushCup (int blockSize) 
+    {
+        pushCup("normal", blockSize);
+        
+    }
+    
+    public void pushCup(String type, int blockSize) {
         if (!active) {
             showMessage("Simulator Finished");
             return;
@@ -174,20 +180,93 @@ public class Tower {
             ok = false;
             return;
         }
+        switch (type) {
+        case "opener":
+            removeBlockingLids();
+            break;
+        case "hierarchical":
+            displaceSmaller(blockSize);
+            break;
+        case "normal":
+        case "Vanishing":
+            break;
+        default:
+            showMessage("Unknown cup type: " + type);
+            ok = false;
+            return;
+        }
+        
         if (calculateCurrentHeight() + blockSize > height) {
             showMessage("Tower doesn't have enough space");
             ok = false;
             return;
         }
-        Cup cup = new Cup(getNextColor(), blockSize, nextId++);
-        cups.add(cup);
-        stack.add(cup);
-        repositionAllItems();
-        if (visible) {
-            cup.makeVisible();
-        }
-        ok = true;
+        String color = getNextColor();
+        int id = nextId++;
+        Cup cup;
+        switch (type) {
+            case "opener":
+                cup = new openerCup(color, blockSize, id);
+                break;
+            case "hierarchical":
+                hierarchicalCup hcup = new hierarchicalCup(color, blockSize, id);
+                if (calculateCurrentHeight() + blockSize == height) {
+                    hcup.setReachedBottom(true);
+                }
+                cup = hcup;
+                break;
+            case "Vanishing": 
+                cup = new VanishingCup (color, blockSize, id); 
+                break; 
+            default: 
+                cup = new Cup(color, blockSize, id); 
+                break; 
+            }
+             cups.add(cup);
+            if (type.equals("hierarchical")) {
+                stack.add(0, cup);
+            } else {
+                stack.add(cup);
+            }
+            repositionAllItems();
+            if (visible) {
+                cup.makeVisible();
+            }
+            ok = true;
     }
+          
+        
+        
+    private void removeBlockingLids() {
+        for (int i = cups.size() - 1; i >= 0; i--) {
+            if (cups.get(i).hasLid()) {
+                removeLid(i);
+             }
+        }
+    }   
+    
+    private void displaceSmaller(int blockSize) {
+        normalizeStack();
+        ArrayList<StackItem> smaller = new ArrayList<StackItem>();
+        ArrayList<StackItem> rest = new ArrayList<StackItem>();
+        for (StackItem item : stack) {
+            if (item.getBlockSize() < blockSize) {
+                smaller.add(item);
+            } else {
+                rest.add(item);
+            }
+        }
+        stack = rest;
+        for (StackItem item : smaller) {
+            stack.add(item);
+        }
+    }  
+
+    
+        
+    
+    
+    
     
     /**
      * Elimina una taza usando el índice (posición) dentro de la lista cups.
@@ -203,6 +282,11 @@ public class Tower {
             return;
         }
         Cup cup = cups.get(index);
+        if (cup.getType().equals("hierarchical") && cup.hasReachedBottom()) {
+            showMessage("hierarchialCup reached the bottom and cannot be removed");
+            ok = false;
+            return;
+        }
         if (cup.hasLid()) {
             cup.getLid().makeInvisible();
             stack.remove(cup.getLid());
@@ -214,6 +298,7 @@ public class Tower {
         repositionAllItems();
         ok = true;
     }
+    
 
     private String getNextColor() {
         return COLORS[colors++ % COLORS.length];
@@ -221,9 +306,10 @@ public class Tower {
     
     /**
      * repositionAllItems
+     * @throws TowerException si un item es diferente de cup o de lid 
      */
+    
     private void repositionAllItems() {
-        
         if (!visible) {
             return;
         }
@@ -232,7 +318,6 @@ public class Tower {
         int towerWidthPx = width * PIXELS_PER_CM;
         int towerHeightPx = height * PIXELS_PER_CM;
         int currentBottom = yTop + towerHeightPx;
- 
         for (StackItem item : stack) {
             if (currentBottom < yTop) {
                 break;
@@ -240,10 +325,18 @@ public class Tower {
             
             switch (item.getType()) {
                 case "cup":
+                case "opener":
+                case "hierarchical":
+                case "Vanishing":
                     currentBottom = item.reposition(xLeft, currentBottom, towerWidthPx);
                     break;
                 case "lid":
-                    currentBottom -= item.heightCm() * PIXELS_PER_CM;
+                case "fearful":
+                    currentBottom = item.reposition(xLeft, currentBottom, towerWidthPx);
+                    break; 
+                    
+                case "crazy":
+                    currentBottom = item.reposition(xLeft, currentBottom, towerWidthPx);
                     break;
                 default:
                     throw new TowerException(item.getType());
@@ -261,20 +354,47 @@ public class Tower {
      */ 
     
     private void normalizeStack() {
-        
         ArrayList<StackItem> newStack = new ArrayList<StackItem>();
         for (StackItem item : stack) {
-            if (item.getType().equals("cup")) {
+            if (isCupType(item.getType())) {
                 newStack.add(item);
-                
                 if (item.hasDependant()) {
                     newStack.add(item.getDependant());
-                    
                 }
+            } else if (item.getType().equals("crazy")) {
+                newStack.add(item);
             }
         }
-        
         stack = newStack;
+    }
+    
+    /**
+     * método auxiliar 
+     * @return True si el Type = una variante de Cup 
+     */
+    private boolean isCupType(String type) {
+        switch (type) {
+            case "cup":
+            case "opener":
+            case "hierarchical":
+            case "Vanishing":
+                return true;
+            default:
+                return false;
+        }
+    }
+    
+    /**
+     * Verifica que una copa determinada está en el stack (se verifica con id)
+     * Método auxiliar para la fearfulLid para que esta valide que su taza compañera está
+     */
+    private boolean isCupInTower(int cupId) {
+        for (Cup cup : cups) {
+            if (cup.getId() == cupId) {
+                return true;
+            }
+        }
+        return false;
     }
     
     
@@ -282,10 +402,11 @@ public class Tower {
      * es un normalizeStack pero con una copia, se usa para el swapToReduce, ya que si se hace 
      * sobre el mismo stack no se efectua correctamenbte el método
      */
+    
     private ArrayList<StackItem> normalizeStackCopy(ArrayList<StackItem> s) {
         ArrayList<StackItem> result = new ArrayList<StackItem>();
         for (StackItem item : s) {
-            if (item.getType().equals("cup")) {
+            if (isCupType(item.getType())) {
                 result.add(item);
                 if (item.hasDependant()) {
                     result.add(item.getDependant());
@@ -294,6 +415,7 @@ public class Tower {
         }
         return result;
     }
+
     
     /**
      * Método auxiliar para swapToReduce 
@@ -368,15 +490,13 @@ public class Tower {
             ok = false;
             return;
         }
-        
         for (int i = stack.size() - 1; i >= 0; i--) {
-            if (stack.get(i).getType().equals("cup")) {
+            if (isCupType(stack.get(i).getType())) {
                 removeCup(cups.indexOf((Cup) stack.get(i)));
                 ok = true;
                 return;
             }
         }
-        
         showMessage("No cups in tower");
         ok = false;
     }
@@ -394,8 +514,17 @@ public class Tower {
         }
         
         for (int i = stack.size() - 1; i >= 0; i--) {
-            if (stack.get(i).getType().equals("lid")) {
-                Cup cup = findCupById(stack.get(i).getCupId());
+            StackItem item = stack.get(i);
+            if (item.getType().equals("lid") || item.getType().equals("fearful") || item.getType().equals("crazy")) {
+                if (item.getType().equals("fearful")) {
+                    Cup cup = findCupById(item.getCupId());
+                    if (cup != null && cup.hasLid()) {
+                        showMessage("fearfulLid: no puede salir mientras tapa a su taza");
+                        ok = false;
+                        return;
+                    }
+                }
+                Cup cup = findCupById(item.getCupId());
                 if (cup != null) {
                     removeLid(cups.indexOf(cup));
                 }
@@ -403,7 +532,6 @@ public class Tower {
                 return;
             }
         }
-        
         showMessage("No lids in tower");
         ok = false;
     }
@@ -446,10 +574,15 @@ public class Tower {
      */
 
     public void pushLid(int cupIndex) {
+        pushLid("normal", cupIndex);
+    }
+    
+    public void pushLid(String type, int cupIndex) {
         if (!active) {
             showMessage("Simulator Finished");
             return;
         }
+        
         if (cupIndex < 0 || cupIndex >= cups.size()) {
             showMessage("invalid cup index");
             ok = false;
@@ -461,22 +594,38 @@ public class Tower {
             ok = false;
             return;
         }
+        
         if (calculateCurrentHeight() + LID_HEIGHT_CM > height) {
             showMessage("Not enough space for lid");
             ok = false;
             return;
         }
-        Lid lid = new Lid(cup.getColor(), cup.getBlockSize(), cup.getId());
-        cup.setLid(lid);
-        int insertPos = stack.indexOf(cup) + 1;
-        stack.add(insertPos, lid);
-        if (visible) {
-            lid.makeVisible();
+        
+        Lid lid; 
+        switch (type) {
+        case "fearful":
+            lid = new fearfulLid(cup.getColor(), cup.getBlockSize(), cup.getId());
+            cup.setLid(lid);
+            int insertPos = stack.indexOf(cup) + 1;
+            stack.add(insertPos, lid);
+            break;
+        case "crazy": 
+            lid = new crazyLid(cup.getColor(), cup.getBlockSize(), cup.getId());
+            stack.add(0, lid);
+            break;
+        default: 
+             lid = new Lid(cup.getColor(), cup.getBlockSize(), cup.getId());
+            cup.setLid(lid);
+            int pos = stack.indexOf(cup) + 1;
+            stack.add(pos, lid);
+            break;
         }
-        repositionAllItems();
-        ok = true;
+        if (visible) { 
+            lid.makeVisible(); 
+        }
+        repositionAllItems(); 
+        ok = true; 
     }
-
     
     /**
      * Invertir el orden de la torre
@@ -489,11 +638,28 @@ public class Tower {
             return;
         }
         
+        vanishVanishingCups();
         normalizeStack();
         Collections.reverse(stack);
         normalizeStack();
         repositionAllItems();
         ok = true;
+    }
+    
+    
+    private void vanishVanishingCups() {
+        for (int i = cups.size() - 1; i >= 0; i--) {
+            Cup cup = cups.get(i);
+            if (cup.getType().equals("Vanishing")) {
+                cup.vanish();
+                if (cup.hasLid()) {
+                    stack.remove(cup.getLid());
+                    cup.setLid(null);
+                }
+                stack.remove(cup);
+                cups.remove(i);
+            }
+        }
     }
     
     private Cup findCupById(int id) {

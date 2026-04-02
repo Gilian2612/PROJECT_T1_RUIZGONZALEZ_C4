@@ -1,4 +1,3 @@
-import shapes.*; 
 /**
  * Representa el marco visual de la torre en el simulador.
  * Tiene rectángulo principal y las marcas de altura.

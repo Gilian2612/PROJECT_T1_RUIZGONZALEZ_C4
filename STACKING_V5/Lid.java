@@ -1,4 +1,3 @@
-import shapes.*; 
 
 /**
  * Representa una tapa en el simulador de apilamiento.

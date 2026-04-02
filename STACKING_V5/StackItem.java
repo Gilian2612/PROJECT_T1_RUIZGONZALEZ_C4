@@ -1,4 +1,3 @@
-import shapes.*; 
 /**
  * Interfaz que Reemplaza a StackEntry.
  *Cada implementación responde por sí misma a:

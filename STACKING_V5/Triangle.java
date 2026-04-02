@@ -1,5 +1,4 @@
-package shapes;
-
+ 
 import java.awt.*;
  
 /**
@@ -9,16 +8,10 @@ import java.awt.*;
  * @version 1.0  (15 July 2000)
  */
 
-public class Triangle{
+public class Triangle extends AllShapes{
     
     public static int VERTICES=3;
-    
-    private int height;
-    private int width;
-    private int xPosition;
-    private int yPosition;
-    private String color;
-    private boolean isVisible;
+
 
     /**
      * Create a new triangle at default position with default color.
@@ -175,7 +168,8 @@ public class Triangle{
     /*
      * Draw the triangle with current specifications on screen.
      */
-    private void draw(){
+    @Override
+    protected void draw(){
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();
             int[] xpoints = { xPosition, xPosition + (width/2), xPosition - (width/2) };
@@ -188,7 +182,8 @@ public class Triangle{
     /*
      * Erase the triangle on screen.
      */
-    private void erase(){
+    @Override
+    protected void erase(){
         if(isVisible) {
             Canvas canvas = Canvas.getCanvas();
             canvas.erase(this);
