@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=hierarchialCup
+comment0.text=\r\n\ copa\ tipo\ hierarchial\ \r\n\ Entra\ en\ tower\ y\ desplaza\ a\ todo\ lo\ que\ sea\ de\ menor\ tama\u00F1o\ \r\n\ si\ llega\ al\ fondo\ de\ la\ torre\ no\ se\ puede\ eliminar\ \r\n\ \r\n\ @author\ WSRM\r\n\ @version\ \ 4\r\n
+comment1.params=color\ blockSize\ id
+comment1.target=hierarchialCup(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getType()
+comment3.params=
+comment3.target=boolean\ hasReachedBottom()
+comment4.params=reachedBottom
+comment4.target=void\ setReachedBottom(boolean)
+numComments=5

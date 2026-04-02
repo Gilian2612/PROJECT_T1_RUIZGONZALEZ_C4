@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=crazyLid
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ crazyLid\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=color\ blockSize\ cupId
+comment1.target=crazyLid(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getType()
+numComments=3

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=fearfulLid
+comment0.text=\r\n\ \r\n\ Tapa\ Type\ fearful\r\n\ Si\ su\ taza\ no\ est\u00E1\ en\ la\ torre,\ no\ puede\ entrar\ \r\n\ Si\ est\u00E1\ tapando\ a\ su\ taza,\ no\ puede\ salir\ \r\n\ Tower\ debe\ verificar\ estas\ condiciones\ antes\ de\ poder\ hacer\ push\ o\ pop\ de\ Lid\ \r\n
+comment1.params=color\ blockSize\ cupId
+comment1.target=fearfulLid(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getType()
+numComments=3

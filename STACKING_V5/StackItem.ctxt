@@ -1,0 +1,29 @@
+#BlueJ class context
+comment0.target=StackItem
+comment0.text=\r\n\ Interfaz\ que\ Reemplaza\ a\ StackEntry.\r\nCada\ implementaci\u00F3n\ responde\ por\ s\u00ED\ misma\ a\:\r\ncuanto\ mide\ (heightCm,\ getBlockSize)\r\na\ que\ taza\ pertenece\ (getCupId)\r\nsi\ tiene\ un\ dependiente\ que\ deba\ apilarse\ inmediatamente\ encima(hasDependant,\ getDependant)\r\n\ como\ reposicionarse\ visualmente\ (reposition)\r\n\r\nLa\ regla\ de\ "dependiente"\ permite\ que\ normalizeStack()\ funcione\ sin\r\npreguntar\ tipo\ concreto\ de\ cada\ elemento\:\r\nCup\ es\ dependiente\ \=\ su\ Lid\ (si\ tiene);\ si\ no,\ null.\r\n\ Lid\ siempre\ null\ (una\ tapa\ no\ arrastra\ nada\ encima).\r\n\ @author\ WSRM\r\n\ @version\ 3.0\ (Ciclo\ 3\ \u2014\ refactor\ herencia)\r\n
+comment1.params=
+comment1.target=int\ heightCm()
+comment1.text=\ cm\ en\ torre.\ \r\n
+comment2.params=
+comment2.target=int\ getBlockSize()
+comment2.text=\ Tama\u00F1o\ del\ bloque\ (blockSize\ de\ la\ taza\ asociada).\ \r\n
+comment3.params=
+comment3.target=int\ getCupId()
+comment3.text=\ Id\ de\ la\ taza\ a\ la\ que\ pertenece\ este\ elemento.\r\n
+comment4.params=
+comment4.target=java.lang.String\ getType()
+comment4.text=cup\ o\ lid\ \r\n\ \r\n
+comment5.params=
+comment5.target=void\ makeVisible()
+comment6.params=
+comment6.target=void\ makeInvisible()
+comment7.params=xLeft\ currentBottom\ towerWidthPx
+comment7.target=int\ reposition(int,\ int,\ int)
+comment7.text=\r\n\ Reposiciona\ elemento\ en\ el\ canvas.\r\n\r\n\ @param\ xLeft\ es\ el\ borde\ izquierdo\ interior\ de\ la\ torre\ (px)\r\n\ @param\ currentBottom\ es\ la\ coordenada\ Y\ del\ piso\ disponible\ (px)\r\n\ @param\ towerWidthPx\ es\ el\ ancho\ interior\ de\ la\ torre\ (px)\r\n\ @return\ nueva\ Y\ del\ piso\ tras\ colocar\ este\ elemento\r\n
+comment8.params=
+comment8.target=boolean\ hasDependant()
+comment8.text=\r\n\ Indica\ si\ este\ elemento\ arrastra\ un\ dependiente\ que\ debe\ ir\ justo\ encima.\r\n\ Cup\ con\ Lid\ \=\ true.\ \ Cup\ sin\ Lid\ y\ Lid\ \=\ \ false.\r\n
+comment9.params=
+comment9.target=StackItem\ getDependant()
+comment9.text=\r\n\ Retorna\ el\ StackItem\ dependiente\ (el\ Lid\ de\ su\ Cup),\ o\ null.\r\n\ Lid\ siempre\ retorna\ null.\r\n
+numComments=10

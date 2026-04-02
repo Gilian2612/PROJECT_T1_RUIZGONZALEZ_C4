@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=TowerFrame
+comment0.text=\r\n\ Representa\ el\ marco\ visual\ de\ la\ torre\ en\ el\ simulador.\r\n\ Tiene\ rect\u00E1ngulo\ principal\ y\ las\ marcas\ de\ altura.\r\n\ \r\n\ @author\ (William\ Santiago\ Ruiz,\ Jonatan\ Palomares)\r\n\ @version\ 2.0\ (Ciclo\ 1)\r\n
+comment1.params=width\ height\ margin
+comment1.target=TowerFrame(int,\ int,\ int)
+comment10.params=
+comment10.target=int\ getXPosition()
+comment11.params=
+comment11.target=int\ getYPosition()
+comment2.params=
+comment2.target=void\ setupFrame()
+comment3.params=
+comment3.target=void\ makeVisible()
+comment4.params=
+comment4.target=void\ makeInvisible()
+comment5.params=
+comment5.target=void\ drawHeightMarks()
+comment6.params=
+comment6.target=int\ getWidth()
+comment7.params=
+comment7.target=int\ getHeight()
+comment8.params=
+comment8.target=int\ getMargin()
+comment9.params=
+comment9.target=boolean\ isVisible()
+numComments=12
