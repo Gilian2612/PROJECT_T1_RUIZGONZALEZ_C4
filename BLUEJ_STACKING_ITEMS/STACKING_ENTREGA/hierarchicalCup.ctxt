@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=hierarchicalCup
+comment0.text=\r\n\ Copa\ de\ tipo\ Hierarchical.\r\n\ \r\n\ @author\ William\ Santiago\ Ruiz\ /\ Sergio\r\n\ @version\ 4.0\ (Ciclo\ 4)\r\n
+comment1.params=color\ blockSize\ id
+comment1.target=hierarchicalCup(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getType()
+comment3.params=
+comment3.target=boolean\ hasReachedBottom()
+comment4.params=reachedBottom
+comment4.target=void\ setReachedBottom(boolean)
+numComments=5
