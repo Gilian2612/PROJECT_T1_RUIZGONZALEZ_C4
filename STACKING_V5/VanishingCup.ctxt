@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=VanishingCup
+comment0.text=\r\n\ VanishingCup\ es\ una\ copa\ que\ se\ achica\ cada\ vez\ que\ se\ utiliza\ la\ funci\u00F3n\ de\ \r\n\ invertir\ la\ torre,\ se\ va\ a\ encoger\ progresivamente\ hasta\ desaparecer\ por\ cada\ iteraci\u00F3n\r\n\ de\ la\ funci\u00F3n\ invertir\ \r\n
+comment1.params=color\ blockSize\ id
+comment1.target=VanishingCup(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getType()
+comment3.params=
+comment3.target=void\ vanish()
+comment3.text=\r\n\ Va\ a\ encoger\ la\ taza\ progresivamente\ hasta\ que\ se\ desaparezca,\ al\ terminar,\ \r\n\ la\ taza\ queda\ invisible\ \r\n
+numComments=4

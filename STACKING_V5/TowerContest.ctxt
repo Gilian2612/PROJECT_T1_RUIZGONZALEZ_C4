@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=TowerContest
+comment0.text=\r\n\ @Autor\ William\ Santiago\ Ruiz\ \r\n\ Requerimiento\ ciclo\ 3\ \r\n\ Nueva\ clase\:\ Resuelve\ el\ problema\ de\ la\ marat\u00F3n\r\n\ @param\ n\ es\ el\ n\u00FAmero\ de\ cups\ \r\n\ @param\ h\ height\ Tyoe\ long\ por\ requerimientos\ del\ problema\ \r\n\ h\ (1\ <\=\ h\ <\=\ 4*10^10)\r\n\ @return\ String\ puede\ ser\ "Impossible"\ o\ h\ ordenados\ \r\n
+comment1.params=
+comment1.target=TowerContest()
+comment2.params=n\ h
+comment2.target=java.lang.String\ solve(int,\ long)
+comment2.text=\r\n\ h\ de\ cups\ \=\ 2n-1\r\n\ \r\n
+comment3.params=n\ h
+comment3.target=void\ simulate(int,\ long)
+comment3.text=\r\n\ Simula\ la\ solucion\ del\ problema\ con\ Tower\ \r\n\ \r\n@param\ n\ \r\n@param\ h\ \r\nMuestra\ la\ torre\ o\ imprime\ impossible\ \r\n
+comment4.params=n\ h
+comment4.target=java.lang.String\ solve(int,\ int)
+comment4.text=\r\n\ Solve()\ sobrecargado,\ recible\ h\ como\ int\ \r\n\ USAR\ PARA\ PRUEBAS\ \r\n\ h\ a\ long\ y\ delega\ en\ solve\ (int,\ long)\r\n\ @param\ n\r\n\ @param\ h\r\n\ @return\ String\ con\ h\ en\ orden\ o\ "impossible"\r\n
+comment5.params=n\ h
+comment5.target=void\ simulate(int,\ int)
+comment5.text=\r\n\ Sobrecarga\ de\ simulate(),\ recibe\ h\ como\ int\ \r\n\ USAR\ PARA\ PRUEBAS\r\n\ convierte\ h\ a\ long\ y\ delega\ en\ simulate\ (int,\ long)\ \r\n\ @param\ n\ \r\n\ @param\ h\ \r\n\ \r\n
+comment6.params=order
+comment6.target=int\ height(java.lang.String)
+comment6.text=\r\n\ M\u00E9todo\ para\ verificar\ que\ el\ height\ est\u00E9\ bien\ \r\n\ recibe\ el\ output\ "h1\ h2\ h3\ h..\ hn\ "\ correspondiente\ a\ los\ cm\ de\ cada\ una\ de\ las\ tazas\r\n\ @param\ order\ String\ con\ h\ de\ tazas\ (de\ abajo\ hacia\ arriba)\ separadas\ con\ esapcio\ \r\n\ @return\ h\ int\ altura\ total\ de\ la\ torre\ \r\n
+numComments=7

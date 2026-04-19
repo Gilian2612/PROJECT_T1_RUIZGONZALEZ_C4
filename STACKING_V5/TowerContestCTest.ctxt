@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=TowerContestCTest
+comment0.text=\r\n\ The\ test\ class\ TowerContestCTest.\r\nClase\ de\ casos\ de\ prueba\ comunes\ para\ TowerContest.\r\n\ @author\ \ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=TowerContestCTest()
+comment1.text=\r\n\ Default\ constructor\ for\ test\ class\ TowerContestCTest\r\n
+comment2.params=
+comment2.target=void\ setUp()
+comment2.text=\r\n\ Sets\ up\ the\ test\ fixture.\r\n\r\n\ Called\ before\ every\ test\ case\ method.\r\n
+comment3.params=
+comment3.target=void\ accordingWSRMShouldUseAllCupsWithTwoCups()
+comment3.text=\r\n\ Verifica\ que\ solve()\ use\ todas\ las\ tazas\ disponibles\ \r\n\ n\=2\ se\ crean\ tazas\ con\ h\ \=\ 1\ y\ h\=3\ \r\n\ deben\ haber\ exactamente\ 2\ elementos\ \r\n
+comment4.params=
+comment4.target=void\ accordingWSRMShouldReturnImpossibleWithTenCupsWrongHeight()
+comment4.text=\r\n\ solve()\ debe\ retornar\ "impossible"\ si\ h\ supera\ maxHeight\ posible\r\n\ n\=10\ cups\ \=\=\ 1,3,5,7,9,11,13,15,17,19\r\n\ maxCup\=\ 19\ \r\n\ maxHeight\ \=\ 28\ \=\=\ 19+9\r\n\ h\=30\ \r\n\ @return\ impossibe\ \r\n
+comment5.params=
+comment5.target=void\ tearDown()
+comment5.text=\r\n\ Tears\ down\ the\ test\ fixture.\r\n\r\n\ Called\ after\ every\ test\ case\ method.\r\n
+numComments=6
